@@ -1,0 +1,12 @@
+<a [routerLink]="['/leaves', leave.id]">
+  <absence-management-card>
+    <h3 ngProjectAs="card-title">{{ leave.reason }}</h3>
+    <p>{{ leave.status }}</p>
+    @if (leave.status === 'REJECTED') {
+    <p ngProjectAs="card-footer">
+      {{ leave.rejectionReason }}
+    </p>
+    }
+    <button (click)="removeItem($event)">Delete</button>
+  </absence-management-card>
+</a>

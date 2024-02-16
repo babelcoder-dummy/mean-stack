@@ -1,0 +1,77 @@
+{
+  "name": "leave",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "absence-management",
+  "sourceRoot": "apps/leave/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/leave",
+        "index": "apps/leave/src/index.html",
+        "browser": "apps/leave/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/leave/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/leave/src/favicon.ico", "apps/leave/src/assets"],
+        "styles": ["apps/leave/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "port": 4201
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "leave:build:production"
+        },
+        "development": {
+          "buildTarget": "leave:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "leave:build"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "leave:build",
+        "port": 4201,
+        "staticFilePath": "dist/apps/leave/browser"
+      }
+    }
+  }
+}
