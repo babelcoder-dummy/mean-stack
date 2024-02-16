@@ -8,16 +8,26 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/leave",
         "index": "apps/leave/src/index.html",
         "browser": "apps/leave/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/leave/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/leave/src/favicon.ico", "apps/leave/src/assets"],
-        "styles": ["apps/leave/src/styles.scss"],
+        "assets": [
+          "apps/leave/src/favicon.ico",
+          "apps/leave/src/assets"
+        ],
+        "styles": [
+          "@angular/material/prebuilt-themes/pink-bluegrey.css",
+          "apps/leave/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {

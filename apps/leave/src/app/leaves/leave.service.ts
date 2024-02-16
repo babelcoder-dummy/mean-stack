@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LeaveItem } from './leave.model';
+import { LeaveItem, LeaveStatus } from './leave.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,18 +9,21 @@ export class LeaveService {
     {
       id: 1,
       reason: 'Reason#1',
-      status: 'ACCEPTED',
+      status: LeaveStatus.APPROVED,
+      leaveDate: '2024-02-20T04:11:14+0000',
     },
     {
       id: 2,
       reason: 'Reason#2',
-      status: 'PENDING',
+      status: LeaveStatus.PENDING,
+      leaveDate: '2024-02-21T04:11:14+0000',
     },
     {
       id: 3,
       reason: 'Reason#3',
-      status: 'REJECTED',
+      status: LeaveStatus.REJECTED,
       rejectionReason: 'REJECTION REASON',
+      leaveDate: '2024-02-22T04:11:14+0000',
     },
   ];
 

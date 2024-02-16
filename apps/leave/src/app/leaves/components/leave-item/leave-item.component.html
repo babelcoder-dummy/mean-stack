@@ -1,12 +1,29 @@
-<a [routerLink]="['/leaves', leave.id]">
-  <absence-management-card>
-    <h3 ngProjectAs="card-title">{{ leave.reason }}</h3>
-    <p>{{ leave.status }}</p>
-    @if (leave.status === 'REJECTED') {
-    <p ngProjectAs="card-footer">
+<mat-card>
+  <mat-card-header>
+    <mat-card-subtitle>
+      <span [class]="getStatusClasses()">{{ leave.status }}</span>
+    </mat-card-subtitle>
+    <mat-card-title>
+      <a [routerLink]="['/leaves', leave.id]">
+        {{ leave.leaveDate | date : 'fullDate' }}
+      </a>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{ leave.reason }}
+    </p>
+    @if (isRejected()) {
+    <mat-divider></mat-divider>
+    <p>
       {{ leave.rejectionReason }}
     </p>
     }
-    <button (click)="removeItem($event)">Delete</button>
-  </absence-management-card>
-</a>
+  </mat-card-content>
+  @if (isPending()) {
+  <mat-card-actions class="flex justify-between">
+    <a mat-button [routerLink]="['/leaves', leave.id, 'edit']">EDIT</a>
+    <button mat-button (click)="removeItem($event)">SHARE</button>
+  </mat-card-actions>
+  }
+</mat-card>
