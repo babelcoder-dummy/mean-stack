@@ -12,4 +12,5 @@ import { LeaveService } from '../../leave.service';
 })
 export class LeaveListComponent {
   leaveService = inject(LeaveService);
+  leaveList$ = this.leaveService.getLeaveList();
 }

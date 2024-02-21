@@ -1,4 +1,4 @@
-@if (leave) {
+@if (leave$ | async; as leave) {
 <dl>
   <dt>ID</dt>
   <dd>{{ leave.id }}</dd>

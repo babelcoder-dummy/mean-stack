@@ -1,37 +1,26 @@
-import { Injectable } from '@angular/core';
-import { LeaveItem, LeaveStatus } from './leave.model';
+import { Injectable, inject } from '@angular/core';
+import { LeaveItem } from './leave.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LeaveService {
-  items: LeaveItem[] = [
-    {
-      id: 1,
-      reason: 'Reason#1',
-      status: LeaveStatus.APPROVED,
-      leaveDate: '2024-02-20T04:11:14+0000',
-    },
-    {
-      id: 2,
-      reason: 'Reason#2',
-      status: LeaveStatus.PENDING,
-      leaveDate: '2024-02-21T04:11:14+0000',
-    },
-    {
-      id: 3,
-      reason: 'Reason#3',
-      status: LeaveStatus.REJECTED,
-      rejectionReason: 'REJECTION REASON',
-      leaveDate: '2024-02-22T04:11:14+0000',
-    },
-  ];
+  private http = inject(HttpClient);
+
+  getLeaveList() {
+    return this.http.get<LeaveItem[]>(
+      `${import.meta.env.NG_APP_API_URL}/leaves`
+    );
+  }
 
   getLeaveById(id: LeaveItem['id']) {
-    return this.items.find((item) => item.id === id);
+    return this.http.get<LeaveItem>(
+      `${import.meta.env.NG_APP_API_URL}/leaves/${id}`
+    );
   }
 
   removeLeaveById(id: LeaveItem['id']) {
-    this.items = this.items.filter((item) => item.id !== id);
+    return this.http.delete(`${import.meta.env.NG_APP_API_URL}/leaves/${id}`);
   }
 }
