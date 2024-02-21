@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@absence-management/fetcher": ["libs/fetcher/src/index.ts"],
       "@absence-management/ui": ["libs/ui/src/index.ts"]
     }
   },

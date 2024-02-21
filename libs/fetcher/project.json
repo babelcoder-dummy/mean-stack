@@ -1,0 +1,9 @@
+{
+  "name": "fetcher",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/fetcher/src",
+  "prefix": "absence-management",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}
