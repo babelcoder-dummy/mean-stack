@@ -15,6 +15,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(cors());
 app.use(responseTransformer);
 setupRoutes(app);
