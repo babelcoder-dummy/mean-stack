@@ -1,0 +1,54 @@
+<form
+  (ngSubmit)="createArticle()"
+  [formGroup]="form"
+  class="mx-auto my-4 flex w-full max-w-xl flex-col space-y-4"
+>
+  <h2 class="mat-headline-5 text-center">Create new article</h2>
+  <div class="mx-auto flex max-w-xs flex-col items-center space-y-2">
+    <img [src]="imagePreview" alt="Image" />
+    <button type="button" mat-raised-button (click)="imageInput.click()">
+      Select image
+    </button>
+    <input
+      type="file"
+      (change)="changeImage($event)"
+      class="hidden"
+      #imageInput
+    />
+  </div>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <textarea
+      type="text"
+      matInput
+      formControlName="title"
+      placeholder="My awesome title"
+    ></textarea>
+    @if (form.get('title')?.hasError('required')) {
+      <mat-error> Title is a required filed </mat-error>
+    }
+    @if (form.get('title')?.hasError('minlength')) {
+      <mat-error> Your title is too short </mat-error>
+    }
+    @if (form.get('title')?.hasError('maxlength')) {
+      <mat-error> Your title is too long </mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Content</mat-label>
+    <textarea
+      matInput
+      formControlName="content"
+      placeholder="Your awesome content"
+    ></textarea>
+    @if (form.get('content')?.hasError('required')) {
+      <mat-error> Content is a required filed </mat-error>
+    }
+    @if (form.get('content')?.hasError('minlength')) {
+      <mat-error> Your content is too short </mat-error>
+    }
+  </mat-form-field>
+  <button mat-raised-button color="primary" [disabled]="form.invalid">
+    Create article
+  </button>
+</form>

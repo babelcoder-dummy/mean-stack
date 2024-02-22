@@ -1,0 +1,10 @@
+@if (leave$ | async; as leave) {
+  <absence-management-leave-form
+    kind="edit"
+    [leave]="leave"
+    (leaveSubmitted)="editLeave($event)"
+  ></absence-management-leave-form
+  >>
+} @else {
+  <mat-spinner></mat-spinner>
+}

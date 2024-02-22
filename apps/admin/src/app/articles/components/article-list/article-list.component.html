@@ -1,0 +1,11 @@
+@if (articleList$ | async; as articles) {
+  <absence-management-data-table
+    title="Article List"
+    [AddComponent]="components.add"
+    [EditComponent]="components.edit"
+    [DetailsComponent]="components.details"
+    [cols]="columns"
+    [rows]="articles"
+    (delete)="deleteArticle($event)"
+  ></absence-management-data-table>
+}

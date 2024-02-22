@@ -1,0 +1,9 @@
+@if (article$ | async; as article) {
+  <article
+    class="mx-auto max-h-[500px] max-w-[500px] space-y-2 overflow-y-auto"
+  >
+    <img [src]="article.image" [alt]="article.title" class="mx-auto" />
+    <h2 class="text-center text-3xl font-bold">{{ article.title }}</h2>
+    <p>{{ article.content }}</p>
+  </article>
+}

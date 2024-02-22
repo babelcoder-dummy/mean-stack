@@ -1,0 +1,20 @@
+<mat-drawer-container class="min-h-screen">
+  <mat-drawer mode="side" opened class="px-2 py-4">
+    <div class="flex flex-col items-start space-y-2">
+      <a mat-button routerLink="/articles" routerLinkActive="mat-accent">
+        <mat-icon>article</mat-icon>
+        Articles
+      </a>
+      <a mat-button routerLink="/leaves" routerLinkActive="mat-accent">
+        <mat-icon>event_busy</mat-icon>
+        Leaves
+      </a>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <main class="m-4 min-h-full">
+      <router-outlet></router-outlet>
+      <absence-management-flash-message></absence-management-flash-message>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>

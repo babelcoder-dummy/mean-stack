@@ -1,0 +1,38 @@
+<h1 class="text-center text-5xl font-bold">{{ title }}</h1>
+@if (displayedColumns) {
+  <table mat-table [dataSource]="rows" class="mat-elevation-z8">
+    @for (col of cols; track col.field) {
+      <ng-container [matColumnDef]="col.field">
+        <th mat-header-cell *matHeaderCellDef>{{ col.title }}</th>
+        <td mat-cell *matCellDef="let element">{{ element[col.field] }}</td>
+      </ng-container>
+    }
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions">
+        Actions
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="space-x-2">
+          <button mat-mini-fab (click)="openDetailsComponent(element.id)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-mini-fab (click)="openEditComponent(element.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-mini-fab color="warn" (click)="deleteItem(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <div class="fixed bottom-4 right-4">
+    <button mat-mini-fab color="accent" (click)="openAddComponent()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+}

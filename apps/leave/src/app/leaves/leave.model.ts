@@ -15,3 +15,8 @@ export type LeaveItem = {
     }
   | { status: LeaveStatus.REJECTED; rejectionReason: string }
 );
+
+export interface LeaveForm {
+  reason: string;
+  leaveDate: string;
+}

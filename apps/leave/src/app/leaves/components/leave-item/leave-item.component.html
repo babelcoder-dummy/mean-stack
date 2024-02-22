@@ -5,7 +5,7 @@
     </mat-card-subtitle>
     <mat-card-title>
       <a [routerLink]="['/leaves', leave.id]">
-        {{ leave.leaveDate | date : 'fullDate' }}
+        {{ leave.leaveDate | date: 'fullDate' }}
       </a>
     </mat-card-title>
   </mat-card-header>
@@ -14,16 +14,16 @@
       {{ leave.reason }}
     </p>
     @if (isRejected()) {
-    <mat-divider></mat-divider>
-    <p>
-      {{ leave.rejectionReason }}
-    </p>
+      <mat-divider></mat-divider>
+      <p>
+        {{ leave.rejectionReason }}
+      </p>
     }
   </mat-card-content>
   @if (isPending()) {
-  <mat-card-actions class="flex justify-between">
-    <a mat-button [routerLink]="['/leaves', leave.id, 'edit']">EDIT</a>
-    <button mat-button (click)="removeItem($event)">SHARE</button>
-  </mat-card-actions>
+    <mat-card-actions class="flex justify-between">
+      <a mat-button [routerLink]="['/leaves', leave.id, 'edit']">EDIT</a>
+      <button mat-button (click)="removeItem($event)">REMOVE</button>
+    </mat-card-actions>
   }
 </mat-card>

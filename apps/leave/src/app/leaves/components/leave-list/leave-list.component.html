@@ -2,10 +2,13 @@
   <h2 class="text-center text-green-700 text-3xl my-2">All Leaves</h2>
   <section class="grid grid-cols-3 gap-2">
     @for (leave of leaveList$ | async; track leave.id) {
-    <absence-management-leave-item
-      [leave]="leave"
-      (remove)="leaveService.removeLeaveById($event)"
-    ></absence-management-leave-item>
+      <absence-management-leave-item
+        [leave]="leave"
+        (remove)="removeLeave($event)"
+      ></absence-management-leave-item>
     }
   </section>
+  <a mat-fab routerLink="/leaves/new" class="!fixed bottom-4 right-4">
+    <mat-icon>add</mat-icon>
+  </a>
 </div>

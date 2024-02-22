@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { LeaveItem } from './leave.model';
+import { LeaveForm, LeaveItem } from './leave.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -14,6 +14,14 @@ export class LeaveService {
 
   getLeaveById(id: LeaveItem['id']) {
     return this.http.get<LeaveItem>(`/leaves/${id}`);
+  }
+
+  create(form: LeaveForm) {
+    return this.http.post<LeaveItem>('/leaves', form);
+  }
+
+  update(id: string, form: LeaveForm) {
+    return this.http.patch<LeaveItem>(`/leaves/${id}`, form);
   }
 
   removeLeaveById(id: LeaveItem['id']) {
