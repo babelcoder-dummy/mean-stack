@@ -25,7 +25,7 @@ const upload = multer({
 export const create: RequestHandler[] = [
   upload.single('image'),
   bodyValidator(CreateArticleFormDto),
-  (req, res) => {
+  async (req, res) => {
     const payload: CreateArticleFormDto & { image: string } = req.body;
 
     if (!req.file) {
@@ -36,7 +36,7 @@ export const create: RequestHandler[] = [
 
     payload.image = `uploads/articles/${req.file.filename}`;
 
-    const article = service.create(payload);
+    const article = await service.create(payload);
     res.status(201).json(new ArticleResponseDto(article));
   },
 ];
@@ -44,17 +44,17 @@ export const create: RequestHandler[] = [
 export const update: RequestHandler[] = [
   upload.single('image'),
   bodyValidator(CreateArticleFormDto),
-  (req, res) => {
+  async (req, res) => {
     const payload: EditArticleFormDto & { image: string } = req.body;
 
     payload.image = `uploads/articles/${req.file.filename}`;
 
-    const article = service.update(+req.params.id, payload);
+    const article = await service.update(req.params.id, payload);
     res.json(new ArticleResponseDto(article));
   },
 ];
 
-export const destroy: RequestHandler = (req, res) => {
-  service.destroy(+req.params.id);
+export const destroy: RequestHandler = async (req, res) => {
+  await service.destroy(req.params.id);
   res.status(204).send();
 };

@@ -18,6 +18,23 @@
           "buildTarget": "api:build:production"
         }
       }
+    },
+    "db:seed:build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/api",
+        "outputFileName": "main.js",
+        "webpackConfig": "apps/api/webpack.seed.config.js"
+      }
+    },
+    "db:seed:serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "db:seed:build",
+        "watch": false,
+        "inspect": false
+      }
     }
   },
   "tags": []

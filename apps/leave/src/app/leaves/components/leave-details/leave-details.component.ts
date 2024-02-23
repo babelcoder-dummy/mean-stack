@@ -16,6 +16,6 @@ export class LeaveDetailsComponent {
   leave$?: Observable<LeaveItem>;
 
   @Input() set id(value: string) {
-    this.leave$ = this.leaveService.getLeaveById(+value);
+    this.leave$ = this.leaveService.getLeaveById(value);
   }
 }

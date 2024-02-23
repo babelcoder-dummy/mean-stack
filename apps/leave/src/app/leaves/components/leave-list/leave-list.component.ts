@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LeaveItemComponent } from '../leave-item/leave-item.component';
 import { LeaveService } from '../../leave.service';
 import { RouterModule } from '@angular/router';
+import { LeaveItem } from '../../leave.model';
 
 @Component({
   selector: 'absence-management-leave-list',
@@ -23,7 +24,7 @@ export class LeaveListComponent {
   leaveService = inject(LeaveService);
   leaveList$ = this.leaveService.getLeaveList();
 
-  removeLeave(id: number) {
+  removeLeave(id: LeaveItem['id']) {
     this.leaveService.removeLeaveById(id).subscribe(() => {
       this.leaveList$ = this.leaveService.getLeaveList();
     });

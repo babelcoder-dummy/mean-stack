@@ -1,9 +1,10 @@
+import { DocumentType } from '@typegoose/typegoose';
 import { Expose, Transform } from 'class-transformer';
-import { LeaveItem } from '../../services/leaves';
+import { LeaveSchema } from '../../models/leave';
 
 export class LeaveResponseDto {
   @Expose()
-  @Transform(({ value }) => value.toString())
+  @Transform(({ obj }) => obj._id.toString())
   id: number;
 
   @Expose()
@@ -15,7 +16,7 @@ export class LeaveResponseDto {
   @Expose()
   leaveDate: string;
 
-  constructor(leave: LeaveItem) {
-    Object.assign(this, leave);
+  constructor(leave: DocumentType<LeaveSchema>) {
+    Object.assign(this, leave.toJSON());
   }
 }

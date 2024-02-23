@@ -5,7 +5,7 @@ export enum LeaveStatus {
 }
 
 export type LeaveItem = {
-  id: number;
+  id: string;
   reason: string;
   leaveDate: string;
 } & (

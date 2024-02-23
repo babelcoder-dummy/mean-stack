@@ -27,7 +27,7 @@ export class EditLeaveComponent {
 
   @Input() set id(value: string) {
     this._id = value;
-    this.leave$ = this.leaveService.getLeaveById(+value);
+    this.leave$ = this.leaveService.getLeaveById(value);
   }
 
   editLeave(leave: LeaveForm) {

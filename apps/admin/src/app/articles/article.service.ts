@@ -12,7 +12,7 @@ export class ArticleService {
     return this.http.get<Article[]>('/articles');
   }
 
-  getArticle(id: string) {
+  getArticle(id: Article['id']) {
     return this.http.get<Article>(`/articles/${id}`);
   }
 
@@ -25,7 +25,7 @@ export class ArticleService {
     return this.http.post<Article>('/admin/articles', formData);
   }
 
-  editArticle(id: string, form: EditArticleForm) {
+  editArticle(id: Article['id'], form: EditArticleForm) {
     const formData = new FormData();
     if (form.title) formData.append('title', form.title);
     if (form.content) formData.append('content', form.content);
@@ -34,7 +34,7 @@ export class ArticleService {
     return this.http.patch<Article>(`/admin/articles/${id}`, formData);
   }
 
-  deleteArticle(id: string) {
+  deleteArticle(id: Article['id']) {
     return this.http.delete(`/admin/articles/${id}`);
   }
 }

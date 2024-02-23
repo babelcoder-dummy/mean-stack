@@ -1,9 +1,10 @@
 import { Expose, Transform } from 'class-transformer';
-import { ArticleItem } from '../../models/article';
+import { DocumentType } from '@typegoose/typegoose';
+import { ArticleSchema } from '../../models/article';
 
 export class ArticleResponseDto {
   @Expose()
-  @Transform(({ value }) => value.toString())
+  @Transform(({ obj }) => obj._id.toString())
   id: string;
 
   @Expose()
@@ -18,7 +19,7 @@ export class ArticleResponseDto {
   @Expose()
   image: string;
 
-  constructor(article: ArticleItem) {
-    Object.assign(this, article);
+  constructor(article: DocumentType<ArticleSchema>) {
+    Object.assign(this, article.toJSON());
   }
 }

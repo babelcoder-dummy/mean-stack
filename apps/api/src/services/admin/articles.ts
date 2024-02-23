@@ -1,27 +1,33 @@
+import { FilterOutFunctionKeys } from '@typegoose/typegoose/lib/types';
 import { slugify } from '../../helpers/slugify';
-import { Article, ArticleItem } from '../../models/article';
+import { ArticleSchema } from '../../models/article';
+import { Article } from '../../models';
 
 export const create = (
-  article: Pick<ArticleItem, 'title' | 'content' | 'image'>,
+  article: Pick<
+    FilterOutFunctionKeys<ArticleSchema>,
+    'title' | 'content' | 'image'
+  >,
 ) => {
   return Article.create({
     ...article,
     slug: slugify(article.title),
-  } as ArticleItem);
+  });
 };
 
 export const update = (
-  id: number,
-  article: Partial<Pick<ArticleItem, 'title' | 'content' | 'image'>>,
+  id: string,
+  article: Partial<
+    Pick<FilterOutFunctionKeys<ArticleSchema>, 'title' | 'content' | 'image'>
+  >,
 ) => {
   return Article.findByIdAndUpdate(
     id,
-    (article.title
-      ? { ...article, slug: slugify(article.title) }
-      : article) as ArticleItem,
+    article.title ? { ...article, slug: slugify(article.title) } : article,
+    { new: true },
   );
 };
 
-export const destroy = (id: number) => {
-  return Article.deleteOne(id);
+export const destroy = (id: string) => {
+  return Article.deleteOne({ _id: id });
 };
